@@ -1,15 +1,15 @@
-h1{
-  text-align: center;
-}
-/* Background image class for later use.
-body{
+body, html {
   height: 100%;
 }
-.background{
-  background-image: url("images/IMG_0880.JPG");
+
+p, h1 {
+  text-align: center;
+  color: red;
+}
+.background-Image {
+  background-image: url("images/IMG_0879.JPG");
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
 }
-*/
