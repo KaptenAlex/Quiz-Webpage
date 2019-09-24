@@ -13,3 +13,24 @@ p, h1 {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.btn_go {
+  margin: 10px 0px 10px 0px;
+}
+
+.centerDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.selection {
+  margin: 10px 20px 10px 20px;
+}
+
+.shapeForm {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  align-items:
+
+}
