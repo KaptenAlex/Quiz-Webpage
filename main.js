@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  class Quiz{
+    constructor(){
+      this.userName = userName; //Should be a string
+      this.noOfQuestions = noOfQuestions; //Should be an array.
+      this.noOfRightAnswers = noOfRightAnswers; //Should be a number/array
+      this.noOfWrongAnswers = noOfWrongAnswers; //Should be a number/array
+    }
+  }
+  class Question{
+    constructor(){
+      this.questionCategory = questionCategory; //Should be a string
+      this.question = question; //Should be a string
+      this.questionAnswers = questionAnswers; //Should be an array
+      this.isQuestionRightOrWrong = isQuestionRightOrWrong; //Should be bool
+    }
+  }
   createQuizDivElement = document.getElementById("createQuiz");
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   const quizArray = ["question 1", "question 2", "question 3", "question 4", "question 5", "question 6"];
