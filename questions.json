@@ -1,52 +1,62 @@
 {
-  "questions":{
-    "question1": "Who is the king of Sweden?",
-    "question2": "What car brand have Elon Musk created?",
-    "question3": "What is Javascript?",
-    "question4": "How many states exist in the USA?",
-    "question5": "What is the chemical formula for salt?",
-    "question6": "What alias does the superhero with a golden lasso have?",
-    "question7": "What is the end of the world scenario called in norse mythology",
-    "question8": "What is another word in swedish for parrot?",
-    "question9": "How many procent of Europe died during the black plague?",
-    "question10": "What is the name of the scientist who discovered radiation?"
-  },
-  "answers": {
-    "answers1": ["Carl Henrik IV","Gustav Vasa","Carl Gustav XVI"],
-    "answers2": ["Ford","Tesla","Honda"],
-    "answers3": ["A coffe machine","A play about coffee","A programming langauge"],
-    "answers4": ["52","51","53"],
-    "answers5": ["NaCl","H20","Ur"],
-    "answers6": ["John Wayne","Norman Bates","Diana Prince"],
-    "answers7": ["Antichrist","Ragnarrök","Armageddon"],
-    "answers8": ["Jobbig skrikande sak","Duva","Ara"],
-    "answers9": ["35%","70%","60%"],
-    "answers10": ["Albert Einstein","Marie Curie","Isaac Asimov"]
-  },
-  "rightAnswers":{
-    "rightAnswer1": 2,
-    "rightAnswer2": 1,
-    "rightAnswer3": 2,
-    "rightAnswer4": 0,
-    "rightAnswer5": 0,
-    "rightAnswer6": 2,
-    "rightAnswer7": 0,
-    "rightAnswer8": 2,
-    "rightAnswer9": 2,
-    "rightAnswer10": 1
-  },
-  "wrongAnswers": {
-    "wrongAnswer1": [0,1],
-    "wrongAnswer2": [0,2],
-    "wrongAnswer3": [0,1],
-    "wrongAnswer4": [1,2],
-    "wrongAnswer5": [1,2],
-    "wrongAnswer6": [0,1],
-    "wrongAnswer7": [1,2],
-    "wrongAnswer8": [0,1],
-    "wrongAnswer9": [0,1],
-    "wrongAnswer10": [0,2]
-  },
-  "categories": ["Culture", "Buisness", "Technology", "Geography", "Chemistry", "Fiction", "Religion", "Grammar", "History", "Science"]
-  
+  "question1": [{
+    "question": "Who is the king of Sweden?",
+    "choices": ["Carl Henrik IV", "Gustav Vasa", "Carl Gustav XVI"],
+    "answers": [false, false, true],
+    "category": "Culture"
+  }],
+  "question2": [{
+    "question": "What brand of cars is owned by Elon Musk",
+    "choices": ["Ford", "Tesla", "Honda"],
+    "answers": [false, true, false],
+    "category": "Technology/Buisness"
+  }],
+  "question3": [{
+    "question": "What is javascript?",
+    "choices": ["A coffe machine", "A play about coffee", "A programming langauge"],
+    "answers": [false, false, true],
+    "category": "Technology"
+  }],
+  "question4": [{
+    "question": "How many states exist in the USA?",
+    "choices": ["52", "51", "53"],
+    "answers": [true, false, false],
+    "category": "Geography"
+  }],
+  "question5": [{
+    "question": "What is the chemical formula for salt?",
+    "choices": ["NaCl", "H20", "Ur"],
+    "answers": [true, false, false],
+    "category": "Chemistry"
+  }],
+  "question6": [{
+    "question": "What alias does the superhero with a golden lasso have?",
+    "choices": ["John Wayne", "Norman Bates", "Diana Prince"],
+    "answers": [false, false, true],
+    "category": "Culture/Fiction"
+  }],
+  "question7": [{
+    "question": "What is the end of the world scenario called in norse mythology?",
+    "choices": ["Antichrist", "Ragnarrök", "Armageddon"],
+    "answers": [false, true, false],
+    "category": "Culture/Religion"
+  }],
+  "question8": [{
+    "question": "What is another word for parrot in swedish?",
+    "choices": ["Jobbig", "Duva", "Ara"],
+    "answers": [false, false, true],
+    "category": "Language"
+  }],
+  "question9": [{
+    "question": "How many procent of Europe died during the black plague?",
+    "choices": ["35%", "70%", "60%"],
+    "answers": [false, false, true],
+    "category": "History"
+  }],
+  "question10": [{
+    "question": "What is the name of the scientist who discovered radiation?",
+    "choices": ["Albert Einstein", "Marie Curie", "Isaac Asimov"],
+    "answers": [false, true, false],
+    "category": "Science/Chemistry/History"
+  }]
 }
