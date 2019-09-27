@@ -34,5 +34,19 @@
     "rightAnswer8": 2,
     "rightAnswer9": 2,
     "rightAnswer10": 1
-  }
+  },
+  "wrongAnswers": {
+    "wrongAnswer1": [0,1],
+    "wrongAnswer2": [0,2],
+    "wrongAnswer3": [0,1],
+    "wrongAnswer4": [1,2],
+    "wrongAnswer5": [1,2],
+    "wrongAnswer6": [0,1],
+    "wrongAnswer7": [1,2],
+    "wrongAnswer8": [0,1],
+    "wrongAnswer9": [0,1],
+    "wrongAnswer10": [0,2]
+  },
+  "categories": ["Culture", "Buisness", "Technology", "Geography", "Chemistry", "Fiction", "Religion", "Grammar", "History", "Science"]
+  
 }
