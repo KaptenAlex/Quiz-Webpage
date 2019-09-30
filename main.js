@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let json = getJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d");
+  for (let question of json) {
+    console.log(question);
+  }
   createQuizDivElement = document.getElementById("createQuiz");
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
