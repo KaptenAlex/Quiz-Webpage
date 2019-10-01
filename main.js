@@ -1,8 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let json = getJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d");
-  for (let question of json) {
-    console.log(question);
-  }
+  //let json = getJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d");
+  //for (let question of json) {
+  //  console.log(question);
+  //}
+  //  loadJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d", function(response){
+  //    var actual_JSON = JSON.parse(response);
+  //    console.log(response);
+  //    console.log(actual_JSON);
+  //  });
+  //MUST USE A CORS EXTENSION, OTHERWISE IT WILL BLOCK REQUEST.
+  //loadJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d", function(response){
+  //
+  //});
+  //
+  //https://www.mocky.io/v2/5d91fb83310000e08410cc5d
+  /*
+  loadJSON("https://demo1976140.mockable.io/", function(response){
+    let acutal_JSON = JSON.parse(response);
+    console.log(actual_JSON);
+  });
+  */
+  let x = getJSON("https://demo1976140.mockable.io/");
+  console.log(x);
+
   createQuizDivElement = document.getElementById("createQuiz");
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
