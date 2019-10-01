@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   class Quiz {
     constructor() {
-      this.userName = userNameValue; //Should be a string
+      this.userName = userNameValue;
       this.noOfQuestions = questionArray.length; //Should be an array length.
-      this.noOfRightAnswers = 0; //Should be a number/array
-      this.noOfWrongAnswers = 0; //Should be a number/array
+      this.noOfRightAnswers = 0; //Should be a number
+      this.noOfWrongAnswers = 0; //Should be a number
     }
   }
   class Question {
