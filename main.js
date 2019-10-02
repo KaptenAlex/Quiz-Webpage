@@ -19,15 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let acutal_JSON = JSON.parse(response);
     console.log(actual_JSON);
   });
+  https://demo1976140.mockable.io/
   */
-  let x = getJSON("https://demo1976140.mockable.io/");
+  let x = getJSON("http://demo3824117.mockable.io/");
   console.log(x);
-
+  console.log(x.question1.answers);
   createQuizDivElement = document.getElementById("createQuiz");
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
   select_question = document.getElementById("select_question");
-  for (var questionValue = 1; questionValue < questionArray.length + 1; questionValue++) {
+  for (var questionValue = 1; questionValue < Object.keys(x).length + 1; questionValue++) {
     select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
   }
 
