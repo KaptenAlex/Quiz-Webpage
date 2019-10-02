@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   class Question {
     constructor() {
       this.questionCategory = ""; //Should be a string
-      this.question = questionArray; //Should be a string
+      this.question = ""; //Should be a string
       this.questionAnswers = []; //Should be an array
-      this.isQuestionRightOrWrong = true; //Should be bool
+      this.isQuestionRightOrWrong = []; //Should be array with bool values
     }
   }
   const json = getJSON("http://demo3824117.mockable.io/");
