@@ -1,62 +1,62 @@
 {
-  "question1": [{
+  "question1": {
     "question": "Who is the king of Sweden?",
     "choices": ["Carl Henrik IV", "Gustav Vasa", "Carl Gustav XVI"],
     "answers": [false, false, true],
     "category": "Culture"
-  }],
-  "question2": [{
+  },
+  "question2": {
     "question": "What brand of cars is owned by Elon Musk",
     "choices": ["Ford", "Tesla", "Honda"],
     "answers": [false, true, false],
     "category": "Technology/Buisness"
-  }],
-  "question3": [{
+  },
+  "question3": {
     "question": "What is javascript?",
     "choices": ["A coffe machine", "A play about coffee", "A programming langauge"],
     "answers": [false, false, true],
     "category": "Technology"
-  }],
-  "question4": [{
+  },
+  "question4": {
     "question": "How many states exist in the USA?",
     "choices": ["52", "51", "53"],
     "answers": [true, false, false],
     "category": "Geography"
-  }],
-  "question5": [{
+  },
+  "question5": {
     "question": "What is the chemical formula for salt?",
     "choices": ["NaCl", "H20", "Ur"],
     "answers": [true, false, false],
     "category": "Chemistry"
-  }],
-  "question6": [{
+  },
+  "question6": {
     "question": "What alias does the superhero with a golden lasso have?",
     "choices": ["John Wayne", "Norman Bates", "Diana Prince"],
     "answers": [false, false, true],
     "category": "Culture/Fiction"
-  }],
-  "question7": [{
+  },
+  "question7": {
     "question": "What is the end of the world scenario called in norse mythology?",
     "choices": ["Antichrist", "Ragnarrök", "Armageddon"],
     "answers": [false, true, false],
     "category": "Culture/Religion"
-  }],
-  "question8": [{
+  },
+  "question8": {
     "question": "What is another word for parrot in swedish?",
     "choices": ["Jobbig", "Duva", "Ara"],
     "answers": [false, false, true],
     "category": "Language"
-  }],
-  "question9": [{
+  },
+  "question9": {
     "question": "How many procent of Europe died during the black plague?",
     "choices": ["35%", "70%", "60%"],
     "answers": [false, false, true],
     "category": "History"
-  }],
-  "question10": [{
+  },
+  "question10": {
     "question": "What is the name of the scientist who discovered radiation?",
     "choices": ["Albert Einstein", "Marie Curie", "Isaac Asimov"],
     "answers": [false, true, false],
     "category": "Science/Chemistry/History"
-  }]
+  }
 }
