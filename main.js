@@ -1,43 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-  //let json = getJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d");
-  //for (let question of json) {
-  //  console.log(question);
-  //}
-  //  loadJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d", function(response){
-  //    var actual_JSON = JSON.parse(response);
-  //    console.log(response);
-  //    console.log(actual_JSON);
-  //  });
-  //MUST USE A CORS EXTENSION, OTHERWISE IT WILL BLOCK REQUEST.
-  //loadJSON("https://www.mocky.io/v2/5d91fb83310000e08410cc5d", function(response){
-  //
-  //});
-  //
-  //https://www.mocky.io/v2/5d91fb83310000e08410cc5d
   /*
-  loadJSON("https://demo1976140.mockable.io/", function(response){
-    let acutal_JSON = JSON.parse(response);
-    console.log(actual_JSON);
-  });
-  https://demo1976140.mockable.io/
+    https://demo1976140.mockable.io/
   */
-  let x = getJSON("http://demo3824117.mockable.io/");
-  console.log(x);
-  console.log(x.question1.answers);
-  createQuizDivElement = document.getElementById("createQuiz");
-  createQuizButtonElement = document.getElementById("btn_CreateQuiz");
-  const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
-  select_question = document.getElementById("select_question");
-  for (var questionValue = 1; questionValue < Object.keys(x).length + 1; questionValue++) {
-    select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
-  }
-
   class Quiz {
     constructor() {
-      this.userName = userNameValue;
-      this.noOfQuestions = questionArray.length; //Should be an array length.
-      this.noOfRightAnswers = 0; //Should be a number
-      this.noOfWrongAnswers = 0; //Should be a number
+      this.userName = "";
+      this.noOfQuestions = Object.keys(json).length;
+      this.noOfRightAnswers = 0;
+      this.noOfWrongAnswers = 0;
     }
   }
   class Question {
@@ -48,9 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
       this.isQuestionRightOrWrong = true; //Should be bool
     }
   }
+  const json = getJSON("http://demo3824117.mockable.io/");
+  console.log(json);
+  let quiz = new Quiz();
+  createQuizDivElement = document.getElementById("createQuiz");
+  createQuizButtonElement = document.getElementById("btn_CreateQuiz");
+  //const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
+
+  select_question = document.getElementById("select_question");
+  for (var questionValue = 1; questionValue < quiz.noOfQuestions + 1; questionValue++) {
+    select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
+  }
+
   document.getElementById('btn_CreateQuiz').addEventListener("click", () => {
-    userNameValue = document.getElementById("userNameInput").value;
-    let quiz = new Quiz();
+    quiz.userName = document.getElementById("userNameInput").value;
     let question = new Question();
     selectValue = document.getElementById("select_question").value;
     createQuizDivElement.insertAdjacentHTML("afterend", "<div class='centerDiv'><div id='quizForm' class='shapeForm'></div></div>");
