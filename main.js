@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('btn_CreateQuiz').addEventListener("click", () => {
     quiz.userName = document.getElementById("userNameInput").value;
-    selectValue = Number(document.getElementById("select_question").value);
+    let selectValue = Number(document.getElementById("select_question").value);
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
     quiz.createCorrectQuizButton();
@@ -100,8 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
         If they are false, add one to tally to quiz = this.noOfWrongAnswers.
         Print out the username with tally and the amount of questions answered.
         For example: "username" scored: (this.noOfRightAnswers/this.noOfQuestions).
-        Tally
       */
+      for (var currentDiv = 1; currentDiv < selectValue + 1; currentDiv++) {
+        console.log(currentDiv);
+        let currentDivElement = document.getElementById("question" + currentDiv);
+        let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
+        console.log(inputChildrenOfCurrentDivElement);
+        for (let checkbox of inputChildrenOfCurrentDivElement) {
+          if (checkbox.checked) {
+            console.log(checkbox.id + " is checked");
+          } else {
+            console.log(checkbox.id + " isn't checked");
+          }
+        }
+      }
     });
   });
 });
