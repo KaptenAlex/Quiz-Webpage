@@ -92,7 +92,16 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createCorrectQuizButton();
 
     document.getElementById("correctQuiz").addEventListener("click", () => {
-      
+      /*
+        TODO:
+        Check which inputs are checked inside of each question div.
+        When they're checked, control whether it's true or false,
+        if they are true, add one tally to quiz = this.noOfRightAnswers.
+        If they are false, add one to tally to quiz = this.noOfWrongAnswers.
+        Print out the username with tally and the amount of questions answered.
+        For example: "username" scored: (this.noOfRightAnswers/this.noOfQuestions).
+        Tally
+      */
     });
   });
 });
