@@ -32,3 +32,7 @@ p, h1 {
   background-color: green;
   border-radius: 10px;
 }
+
+.rightSide {
+  float: right;
+}

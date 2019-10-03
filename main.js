@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   /*
-    https://demo1976140.mockable.io/
+    Link to current json object: http://demo3824117.mockable.io/
   */
   const json = getJSON("http://demo3824117.mockable.io/");
   class Quiz {
@@ -10,16 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
       this.noOfRightAnswers = 0;
       this.noOfWrongAnswers = 0;
     }
-    loadQuiz(selectedQuestions) {
-      let createQuizDivElement = document.getElementById("createQuiz");
-      createQuizDivElement.insertAdjacentHTML("afterend", "<div class='centerDiv'><div id='quizForm' class='shapeForm'></div></div>");
+    createElementsForQuiz(selectedQuestions) {
       let quizFormElement = document.getElementById("quizForm");
       let questionClass = new Question();
-      //console.log(Object.keys(json));
       for (var eachDiv = 1; eachDiv <= selectedQuestions; eachDiv++) {
         let jsonProperty = questionClass.currentQuestion(eachDiv);
-        //let newPropPerLoop = json["question" + eachDiv];
-        //console.log(newPropPerLoop);
 
         let breakRow = document.createElement("br");
 
@@ -33,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
         let labelForQuestion = document.createElement("label");
-        labelForQuestion.appendChild(document.createTextNode("Question: " + questionClass.question)); // + json.question1.question));
+        labelForQuestion.appendChild(document.createTextNode("Question: " + questionClass.question));
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
 
@@ -51,13 +46,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+    createQuizForm() {
+      let createQuizDivElement = document.getElementById("createQuiz");
+      createQuizDivElement.insertAdjacentHTML("afterend", "<div class='centerDiv'><div id='quizForm' class='shapeForm'></div></div>");
+      let questionDiv = document.getElementById("questionsDiv");
+      questionDiv.parentNode.removeChild(questionDiv);
+      this.createElementsForQuiz();
+    }
+    createCorrectQuizButton() {
+      let quizFormElement = document.getElementById("quizForm");
+      let submitButton = document.createElement("button");
+      submitButton.id = "correctQuiz";
+      submitButton.type = "button";
+      submitButton.className = "btn btn-success rightSide";
+      submitButton.innerHTML = "Correct quiz!";
+      quizFormElement.appendChild(submitButton);
+    }
   }
   class Question {
     constructor() {
-      this.questionCategory = ""; //Should be a string
-      this.question = ""; //Should be a string
-      this.questionAnswers = []; //Should be an array
-      this.isQuestionRightOrWrong = []; //Should be array with bool values
+      this.questionCategory = "";
+      this.question = "";
+      this.questionAnswers = [];
+      this.isQuestionRightOrWrong = [];
     }
     currentQuestion(value) {
       let currentObject = json["question" + value];
@@ -66,13 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
       this.questionAnswers = currentObject.choices;
       this.isQuestionRightOrWrong = currentObject.answers;
     }
-
   }
   let quiz = new Quiz();
-  //console.log(json);
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
-  //const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
-
   select_question = document.getElementById("select_question");
   for (var questionValue = 1; questionValue < Object.keys(json).length + 1; questionValue++) {
     select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
@@ -81,8 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('btn_CreateQuiz').addEventListener("click", () => {
     quiz.userName = document.getElementById("userNameInput").value;
     selectValue = Number(document.getElementById("select_question").value);
-    quiz.loadQuiz(selectValue);
-    let questionDiv = document.getElementById("questionsDiv");
-    questionDiv.parentNode.removeChild(questionDiv);
+    quiz.createQuizForm();
+    quiz.createElementsForQuiz(selectValue);
+    quiz.createCorrectQuizButton();
   });
 });
