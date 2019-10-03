@@ -14,11 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let createQuizDivElement = document.getElementById("createQuiz");
       createQuizDivElement.insertAdjacentHTML("afterend", "<div class='centerDiv'><div id='quizForm' class='shapeForm'></div></div>");
       let quizFormElement = document.getElementById("quizForm");
-      console.log(Object.keys(json));
+      let questionClass = new Question();
+      //console.log(Object.keys(json));
       for (var eachDiv = 1; eachDiv <= selectedQuestions; eachDiv++) {
-        let newPropPerLoop = json["question" + eachDiv]; //question1.question
-        console.log(newPropPerLoop);
-        //<span id='questionSpan'>" + "hej" + i + "</span>
+        let jsonProperty = questionClass.currentQuestion(eachDiv);
+        //let newPropPerLoop = json["question" + eachDiv];
+        //console.log(newPropPerLoop);
+
         let breakRow = document.createElement("br");
 
         let divForQuestion = document.createElement("div");
@@ -26,16 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
         quizFormElement.appendChild(divForQuestion);
 
         let labelForCategory = document.createElement("label");
-        labelForCategory.appendChild(document.createTextNode("Category: " + newPropPerLoop.category));
+        labelForCategory.appendChild(document.createTextNode("Category: " + jsonProperty.category));
         divForQuestion.appendChild(labelForCategory);
         labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
         let labelForQuestion = document.createElement("label");
-        labelForQuestion.appendChild(document.createTextNode("Question: " + newPropPerLoop.question)); // + json.question1.question));
+        labelForQuestion.appendChild(document.createTextNode("Question: " + jsonProperty.question)); // + json.question1.question));
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
 
-        for (let choice of newPropPerLoop.choices) {
+        for (let choice of jsonProperty.choices) {
           let checkboxForChoices = document.createElement("input");
           checkboxForChoices.type = "checkbox";
           checkboxForChoices.id = choice;
@@ -57,6 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
       this.questionAnswers = []; //Should be an array
       this.isQuestionRightOrWrong = []; //Should be array with bool values
     }
+    currentQuestion(value) {
+      let newPropPerLoop = json["question" + value];
+      return newPropPerLoop;
+    }
+
   }
   let quiz = new Quiz();
   console.log(json);
