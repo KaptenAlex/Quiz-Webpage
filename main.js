@@ -90,5 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
     quiz.createCorrectQuizButton();
+
+    document.getElementById("correctQuiz").addEventListener("click", () => {
+      
+    });
   });
 });
