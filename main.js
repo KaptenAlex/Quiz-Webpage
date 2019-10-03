@@ -15,42 +15,37 @@ document.addEventListener("DOMContentLoaded", () => {
       createQuizDivElement.insertAdjacentHTML("afterend", "<div class='centerDiv'><div id='quizForm' class='shapeForm'></div></div>");
       let quizFormElement = document.getElementById("quizForm");
       console.log(Object.keys(json));
-      for (var i = 1; i <= selectedQuestions; i++) {
-        for (var questions in json) {
-          if (json.hasOwnProperty(questions)) {
-            let x = 0;
-            //<span id='questionSpan'>" + "hej" + i + "</span>
-            let breakRow = document.createElement("br");
+      for (var eachDiv = 1; eachDiv <= selectedQuestions; eachDiv++) {
+        //<span id='questionSpan'>" + "hej" + i + "</span>
+        let breakRow = document.createElement("br");
 
-            let divForQuestion = document.createElement("div");
-            divForQuestion.id = "question" + i;
-            quizFormElement.appendChild(divForQuestion);
+        let divForQuestion = document.createElement("div");
+        divForQuestion.id = "question" + i;
+        quizFormElement.appendChild(divForQuestion);
 
-            let labelForCategory = document.createElement("label");
-            labelForCategory.appendChild(document.createTextNode("Category: " + questions.category));
-            divForQuestion.appendChild(labelForCategory);
-            labelForCategory.insertAdjacentHTML("afterend", "<br>");
+        let labelForCategory = document.createElement("label");
+        labelForCategory.appendChild(document.createTextNode("Category: " ));//+ json.question1.category));
+        divForQuestion.appendChild(labelForCategory);
+        labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
-            let labelForQuestion = document.createElement("label");
-            labelForQuestion.appendChild(document.createTextNode("Question: " + json.question1.question));
-            divForQuestion.appendChild(labelForQuestion);
-            labelForQuestion.insertAdjacentHTML("afterend", "<br>");
-            for (let choice of json.question1.choices) {
-              let checkboxForChoices = document.createElement("input");
-              checkboxForChoices.type = "checkbox";
-              checkboxForChoices.id = "answer" + x;
-              divForQuestion.appendChild(checkboxForChoices);
+        let labelForQuestion = document.createElement("label");
+        labelForQuestion.appendChild(document.createTextNode("Question: "));// + json.question1.question));
+        divForQuestion.appendChild(labelForQuestion);
+        labelForQuestion.insertAdjacentHTML("afterend", "<br>");
+        for (var i = 0; i < 3; i++) {
+          let checkboxForChoices = document.createElement("input");
+          checkboxForChoices.type = "checkbox";
+          checkboxForChoices.id = "answer";
+          divForQuestion.appendChild(checkboxForChoices);
 
-              let labelForChoices = document.createElement("label");
-              labelForChoices.htmlFor = "answer" + x;
-              labelForChoices.appendChild(document.createTextNode(choice));
-              divForQuestion.appendChild(labelForChoices);
-              labelForChoices.insertAdjacentHTML("afterend", "<br>");
-              x++;
-              console.log(x);
-            }
-          }
+          let labelForChoices = document.createElement("label");
+          labelForChoices.htmlFor = "answer";
+          labelForChoices.appendChild(document.createTextNode("sasa"));
+          divForQuestion.appendChild(labelForChoices);
+          labelForChoices.insertAdjacentHTML("afterend", "<br>");
         }
+        //for (let choice of json.question1.choices) {
+        //}
       }
     }
   }
