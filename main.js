@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   let quiz = new Quiz();
-  createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   select_question = document.getElementById("select_question");
   for (var questionValue = 1; questionValue < Object.keys(json).length + 1; questionValue++) {
     select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
