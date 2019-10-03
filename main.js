@@ -28,19 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
         quizFormElement.appendChild(divForQuestion);
 
         let labelForCategory = document.createElement("label");
-        labelForCategory.appendChild(document.createTextNode("Category: " + jsonProperty.category));
+        labelForCategory.appendChild(document.createTextNode("Category: " + questionClass.questionCategory));
         divForQuestion.appendChild(labelForCategory);
         labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
         let labelForQuestion = document.createElement("label");
-        labelForQuestion.appendChild(document.createTextNode("Question: " + jsonProperty.question)); // + json.question1.question));
+        labelForQuestion.appendChild(document.createTextNode("Question: " + questionClass.question)); // + json.question1.question));
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
 
-        for (let choice of jsonProperty.choices) {
+        for (let choice of questionClass.questionAnswers) {
           let checkboxForChoices = document.createElement("input");
           checkboxForChoices.type = "checkbox";
           checkboxForChoices.id = choice;
+          checkboxForChoices.value = "";
           divForQuestion.appendChild(checkboxForChoices);
 
           let labelForChoices = document.createElement("label");
@@ -55,13 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
   class Question {
     constructor() {
       this.questionCategory = ""; //Should be a string
-      this.question = "test"; //Should be a string
+      this.question = ""; //Should be a string
       this.questionAnswers = []; //Should be an array
       this.isQuestionRightOrWrong = []; //Should be array with bool values
     }
     currentQuestion(value) {
-      let newPropPerLoop = json["question" + value];
-      return newPropPerLoop;
+      let currentObject = json["question" + value];
+      this.questionCategory = currentObject.category;
+      this.question = currentObject.question;
+      this.questionAnswers = currentObject.choices;
+      this.isQuestionRightOrWrong = currentObject.answers;
     }
 
   }
