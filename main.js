@@ -16,36 +16,37 @@ document.addEventListener("DOMContentLoaded", () => {
       let quizFormElement = document.getElementById("quizForm");
       console.log(Object.keys(json));
       for (var eachDiv = 1; eachDiv <= selectedQuestions; eachDiv++) {
+        let newPropPerLoop = json["question" + eachDiv]; //question1.question
+        console.log(newPropPerLoop);
         //<span id='questionSpan'>" + "hej" + i + "</span>
         let breakRow = document.createElement("br");
 
         let divForQuestion = document.createElement("div");
-        divForQuestion.id = "question" + i;
+        divForQuestion.id = "question" + eachDiv;
         quizFormElement.appendChild(divForQuestion);
 
         let labelForCategory = document.createElement("label");
-        labelForCategory.appendChild(document.createTextNode("Category: " ));//+ json.question1.category));
+        labelForCategory.appendChild(document.createTextNode("Category: " + newPropPerLoop.category));
         divForQuestion.appendChild(labelForCategory);
         labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
         let labelForQuestion = document.createElement("label");
-        labelForQuestion.appendChild(document.createTextNode("Question: "));// + json.question1.question));
+        labelForQuestion.appendChild(document.createTextNode("Question: " + newPropPerLoop.question)); // + json.question1.question));
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
-        for (var i = 0; i < 3; i++) {
+
+        for (let choice of newPropPerLoop.choices) {
           let checkboxForChoices = document.createElement("input");
           checkboxForChoices.type = "checkbox";
-          checkboxForChoices.id = "answer";
+          checkboxForChoices.id = choice;
           divForQuestion.appendChild(checkboxForChoices);
 
           let labelForChoices = document.createElement("label");
-          labelForChoices.htmlFor = "answer";
-          labelForChoices.appendChild(document.createTextNode("sasa"));
+          labelForChoices.htmlFor = choice;
+          labelForChoices.appendChild(document.createTextNode(choice));
           divForQuestion.appendChild(labelForChoices);
           labelForChoices.insertAdjacentHTML("afterend", "<br>");
         }
-        //for (let choice of json.question1.choices) {
-        //}
       }
     }
   }
