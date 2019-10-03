@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
           let checkboxForChoices = document.createElement("input");
           checkboxForChoices.type = "checkbox";
           checkboxForChoices.id = choice;
-          checkboxForChoices.value = "";
           divForQuestion.appendChild(checkboxForChoices);
 
           let labelForChoices = document.createElement("label");
@@ -70,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
   let quiz = new Quiz();
-  console.log(json);
+  //console.log(json);
   createQuizButtonElement = document.getElementById("btn_CreateQuiz");
   //const questionArray = ["Vem är djungelns konung?", "Vem är Zlatan", "Vad heter Elon Musks huvudföretag", "Vad är javascript?", "vad är ett objekt?"];
 
