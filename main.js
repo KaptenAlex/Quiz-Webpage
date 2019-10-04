@@ -106,15 +106,22 @@ document.addEventListener("DOMContentLoaded", () => {
         For example: "username" scored: (this.noOfRightAnswers/this.noOfQuestions).
       */
       for (var currentDiv = 1; currentDiv < selectValue + 1; currentDiv++) {
+        let noOfChoicesNotChecked = 0;
         let currentDivElement = document.getElementById("question" + currentDiv);
         let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
-        
         for (let checkbox of inputChildrenOfCurrentDivElement) {
           if (checkbox.checked && checkbox.value == "true") {
             quiz.noOfRightAnswers++;
           }
           else if (checkbox.checked && checkbox.value == "false") {
             quiz.noOfWrongAnswers++;
+          }
+          else {
+            noOfChoicesNotChecked++;
+            if (noOfChoicesNotChecked >= 3) {
+              console.log("You should have checked one of the options atleast!");
+              quiz.noOfWrongAnswers++;
+            }
           }
         }
       }
