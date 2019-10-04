@@ -1,9 +1,9 @@
 {
   "question1": {
-    "question": "Who is the king of Sweden?",
+    "question": "Which of these people have ruled over Sweden?",
     "choices": ["Carl Henrik IV", "Gustav Vasa", "Carl Gustav XVI"],
-    "answers": [false, false, true],
-    "category": "Culture"
+    "answers": [false, true, true],
+    "category": "History"
   },
   "question2": {
     "question": "What brand of cars is owned by Elon Musk",
