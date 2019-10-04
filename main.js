@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.noOfWrongAnswers = 0;
     }
     createElementsForQuiz(selectedQuestions) {
+      this.noOfQuestions = selectedQuestions;
       let quizFormElement = document.getElementById("quizForm");
       let questionClass = new Question();
       for (var eachDiv = 1; eachDiv <= selectedQuestions; eachDiv++) {
@@ -97,26 +98,30 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("correctQuiz").addEventListener("click", () => {
       /*
         TODO:
-        Check which inputs are checked inside of each question div.
-        When they're checked, control whether it's true or false,
-        if they are true, add one tally to quiz = this.noOfRightAnswers.
-        If they are false, add one to tally to quiz = this.noOfWrongAnswers.
+        Completed: Check which inputs are checked inside of each question div.
+        Completed: When they're checked, control whether it's true or false,
+        Completed: if they are true, add one tally to quiz = this.noOfRightAnswers.
+        Completed: If they are false, add one to tally to quiz = this.noOfWrongAnswers.
         Print out the username with tally and the amount of questions answered.
         For example: "username" scored: (this.noOfRightAnswers/this.noOfQuestions).
       */
       for (var currentDiv = 1; currentDiv < selectValue + 1; currentDiv++) {
-        console.log(currentDiv);
         let currentDivElement = document.getElementById("question" + currentDiv);
         let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
-        console.log(inputChildrenOfCurrentDivElement);
+        
         for (let checkbox of inputChildrenOfCurrentDivElement) {
-          if (checkbox.checked) {
-            console.log(checkbox.id + " is checked");
-          } else {
-            console.log(checkbox.id + " isn't checked");
+          if (checkbox.checked && checkbox.value == "true") {
+            quiz.noOfRightAnswers++;
+          }
+          else if (checkbox.checked && checkbox.value == "false") {
+            quiz.noOfWrongAnswers++;
           }
         }
       }
+      console.log(quiz.userName + " You scored:");
+      console.log("Number of right answers: " + quiz.noOfRightAnswers);
+      console.log("Number of wrong answers: " + quiz.noOfWrongAnswers);
+      console.log("Number of questions: " + quiz.noOfQuestions);
     });
   });
 });
