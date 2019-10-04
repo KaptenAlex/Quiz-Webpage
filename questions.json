@@ -36,9 +36,9 @@
     "category": "Culture/Fiction"
   },
   "question7": {
-    "question": "What is the end of the world scenario called in norse mythology?",
-    "choices": ["Antichrist", "Ragnarrök", "Armageddon"],
-    "answers": [false, true, false],
+    "question": "What are some religious end of the world scenarios called?",
+    "choices": ["World War Three", "Ragnarrök", "Day of Judgement"],
+    "answers": [false, true, true],
     "category": "Culture/Religion"
   },
   "question8": {

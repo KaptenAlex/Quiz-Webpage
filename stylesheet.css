@@ -1,18 +1,21 @@
 body, html {
   height: 100%;
-}
-
-p, h1 {
-  text-align: center;
-  color: red;
-}
-
-.background-Image {
   background-image: url("images/IMG_0879.JPG");
-  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#headTitle {
+  text-align: center;
+  color: red;
+  -webkit-text-fill-color: red;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.background-Image {
+
 }
 
 .btn_go {
@@ -41,18 +44,27 @@ p, h1 {
 
 .right-answers {
   color: green;
+  -webkit-text-fill-color: green;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
 }
 
 .total-questions {
   color: blue;
+  -webkit-text-fill-color: blue;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
 }
 
 .wrong-answers {
   color: red;
+  -webkit-text-fill-color: red;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
 }

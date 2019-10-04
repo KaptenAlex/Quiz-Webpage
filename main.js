@@ -66,37 +66,44 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.innerHTML = "Correct quiz!";
       quizFormElement.appendChild(submitButton);
     }
-    correctQuizQuestions(selectedValue){
+    correctQuizQuestions(selectedValue) {
       for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
         let noOfChoicesNotChecked = 0;
+        let noOfWrongAnswers = 0;
+        let noOfRightAnswers = 0;
         let currentDivElement = document.getElementById("question" + currentDiv);
         let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
         for (let checkbox of inputChildrenOfCurrentDivElement) {
           if (checkbox.checked && checkbox.value == "true") {
-            quiz.noOfRightAnswers++;
+            noOfRightAnswers++;
           } else if (checkbox.checked && checkbox.value == "false") {
-            quiz.noOfWrongAnswers++;
+            noOfWrongAnswers++;
           } else {
             noOfChoicesNotChecked++;
             if (noOfChoicesNotChecked >= 3) {
-              quiz.noOfWrongAnswers++;
+              noOfWrongAnswers++;
             }
           }
+        }
+        if (noOfRightAnswers > 0 && noOfWrongAnswers == 0) {
+          quiz.noOfRightAnswers++;
+        } else if (noOfWrongAnswers > 0) {
+          quiz.noOfWrongAnswers++;
         }
       }
     }
     printOutResults() {
-      let createNoOfQuestions = document.createElement("h2");
+      let createNoOfQuestions = document.createElement("h1");
       createNoOfQuestions.innerHTML = "Number of questions: " + quiz.noOfQuestions;
       createNoOfQuestions.className = "total-questions";
-      let createNoOfRightAnswers = document.createElement("h2");
-      createNoOfRightAnswers.innerHTML = "Number of right answers: " + quiz.noOfRightAnswers;
+      let createNoOfRightAnswers = document.createElement("h1");
+      createNoOfRightAnswers.innerHTML = "Number of right questions: " + quiz.noOfRightAnswers;
       createNoOfRightAnswers.className = "right-answers";
-      let createNoOfWrongAnswers = document.createElement("h2");
-      createNoOfWrongAnswers.innerHTML = "Number of wrong answers: " + quiz.noOfWrongAnswers;
+      let createNoOfWrongAnswers = document.createElement("h1");
+      createNoOfWrongAnswers.innerHTML = "Number of wrong questions: " + quiz.noOfWrongAnswers;
       createNoOfWrongAnswers.className = "wrong-answers";
       let container = document.getElementById("headers");
-      document.getElementById("headTitle").innerHTML = quiz.userName;
+      document.getElementById("headTitle").innerHTML = "The results are in " + quiz.userName + "!";
       container.appendChild(createNoOfQuestions);
       container.appendChild(createNoOfRightAnswers);
       container.appendChild(createNoOfWrongAnswers);
