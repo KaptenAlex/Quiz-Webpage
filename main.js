@@ -66,6 +66,25 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.innerHTML = "Correct quiz!";
       quizFormElement.appendChild(submitButton);
     }
+    correctQuizQuestions(selectedValue){
+      for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
+        let noOfChoicesNotChecked = 0;
+        let currentDivElement = document.getElementById("question" + currentDiv);
+        let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
+        for (let checkbox of inputChildrenOfCurrentDivElement) {
+          if (checkbox.checked && checkbox.value == "true") {
+            quiz.noOfRightAnswers++;
+          } else if (checkbox.checked && checkbox.value == "false") {
+            quiz.noOfWrongAnswers++;
+          } else {
+            noOfChoicesNotChecked++;
+            if (noOfChoicesNotChecked >= 3) {
+              quiz.noOfWrongAnswers++;
+            }
+          }
+        }
+      }
+    }
     printOutResults() {
       let createNoOfQuestions = document.createElement("h2");
       createNoOfQuestions.innerHTML = "Number of questions: " + quiz.noOfQuestions;
@@ -112,23 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createCorrectQuizButton();
 
     document.getElementById("correctQuiz").addEventListener("click", () => {
-      for (var currentDiv = 1; currentDiv < selectValue + 1; currentDiv++) {
-        let noOfChoicesNotChecked = 0;
-        let currentDivElement = document.getElementById("question" + currentDiv);
-        let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
-        for (let checkbox of inputChildrenOfCurrentDivElement) {
-          if (checkbox.checked && checkbox.value == "true") {
-            quiz.noOfRightAnswers++;
-          } else if (checkbox.checked && checkbox.value == "false") {
-            quiz.noOfWrongAnswers++;
-          } else {
-            noOfChoicesNotChecked++;
-            if (noOfChoicesNotChecked >= 3) {
-              quiz.noOfWrongAnswers++;
-            }
-          }
-        }
-      }
+      quiz.correctQuizQuestions(selectValue);
       let quizFormElement = document.getElementById("quizForm");
       quizFormElement.remove();
       quiz.printOutResults();
