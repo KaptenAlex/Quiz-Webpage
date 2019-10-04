@@ -6,6 +6,7 @@ p, h1 {
   text-align: center;
   color: red;
 }
+
 .background-Image {
   background-image: url("images/IMG_0879.JPG");
   height: 100%;
@@ -33,6 +34,25 @@ p, h1 {
   border-radius: 10px;
 }
 
-.rightSide {
+.floatRight {
   float: right;
+  justify-content: center;
+}
+
+.right-answers {
+  color: green;
+  display: flex;
+  justify-content: center;
+}
+
+.total-questions {
+  color: blue;
+  display: flex;
+  justify-content: center;
+}
+
+.wrong-answers {
+  color: red;
+  display: flex;
+  justify-content: center;
 }

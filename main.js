@@ -62,9 +62,25 @@ document.addEventListener("DOMContentLoaded", () => {
       let submitButton = document.createElement("button");
       submitButton.id = "correctQuiz";
       submitButton.type = "button";
-      submitButton.className = "btn btn-success rightSide";
+      submitButton.className = "btn btn-success floatRight";
       submitButton.innerHTML = "Correct quiz!";
       quizFormElement.appendChild(submitButton);
+    }
+    printOutResults() {
+      let createNoOfQuestions = document.createElement("h2");
+      createNoOfQuestions.innerHTML = "Number of questions: " + quiz.noOfQuestions;
+      createNoOfQuestions.className = "total-questions";
+      let createNoOfRightAnswers = document.createElement("h2");
+      createNoOfRightAnswers.innerHTML = "Number of right answers: " + quiz.noOfRightAnswers;
+      createNoOfRightAnswers.className = "right-answers";
+      let createNoOfWrongAnswers = document.createElement("h2");
+      createNoOfWrongAnswers.innerHTML = "Number of wrong answers: " + quiz.noOfWrongAnswers;
+      createNoOfWrongAnswers.className = "wrong-answers";
+      let container = document.getElementById("headers");
+      document.getElementById("headTitle").innerHTML = quiz.userName;
+      container.appendChild(createNoOfQuestions);
+      container.appendChild(createNoOfRightAnswers);
+      container.appendChild(createNoOfWrongAnswers);
     }
   }
   class Question {
@@ -96,15 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createCorrectQuizButton();
 
     document.getElementById("correctQuiz").addEventListener("click", () => {
-      /*
-        TODO:
-        Completed: Check which inputs are checked inside of each question div.
-        Completed: When they're checked, control whether it's true or false,
-        Completed: if they are true, add one tally to quiz = this.noOfRightAnswers.
-        Completed: If they are false, add one to tally to quiz = this.noOfWrongAnswers.
-        Print out the username with tally and the amount of questions answered.
-        For example: "username" scored: (this.noOfRightAnswers/this.noOfQuestions).
-      */
       for (var currentDiv = 1; currentDiv < selectValue + 1; currentDiv++) {
         let noOfChoicesNotChecked = 0;
         let currentDivElement = document.getElementById("question" + currentDiv);
@@ -112,23 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let checkbox of inputChildrenOfCurrentDivElement) {
           if (checkbox.checked && checkbox.value == "true") {
             quiz.noOfRightAnswers++;
-          }
-          else if (checkbox.checked && checkbox.value == "false") {
+          } else if (checkbox.checked && checkbox.value == "false") {
             quiz.noOfWrongAnswers++;
-          }
-          else {
+          } else {
             noOfChoicesNotChecked++;
             if (noOfChoicesNotChecked >= 3) {
-              console.log("You should have checked one of the options atleast!");
               quiz.noOfWrongAnswers++;
             }
           }
         }
       }
-      console.log(quiz.userName + " You scored:");
-      console.log("Number of right answers: " + quiz.noOfRightAnswers);
-      console.log("Number of wrong answers: " + quiz.noOfWrongAnswers);
-      console.log("Number of questions: " + quiz.noOfQuestions);
+      let quizFormElement = document.getElementById("quizForm");
+      quizFormElement.remove();
+      quiz.printOutResults();
     });
   });
 });
