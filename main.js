@@ -32,10 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
 
+        let counterForInputValues = 0;
         for (let choice of questionClass.questionAnswers) {
           let checkboxForChoices = document.createElement("input");
           checkboxForChoices.type = "checkbox";
           checkboxForChoices.id = choice;
+          checkboxForChoices.value = questionClass.isQuestionRightOrWrong[counterForInputValues];
           divForQuestion.appendChild(checkboxForChoices);
 
           let labelForChoices = document.createElement("label");
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
           labelForChoices.appendChild(document.createTextNode(choice));
           divForQuestion.appendChild(labelForChoices);
           labelForChoices.insertAdjacentHTML("afterend", "<br>");
+          counterForInputValues++;
         }
       }
     }
