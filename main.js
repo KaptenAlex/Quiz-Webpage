@@ -17,15 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     onlyViewCurrentQuestion(currentQuestion) {
       console.log(currentQuestion);
-      if (currentQuestion.id > currentQuestion.id || currentQuestion.id < currentQuestion.id) {
+      if (currentQuestion.id != currentQuestion.id) {
         currentQuestion.style.display = "none";
       }
     }
-    nextQuestion(){
-
+    nextQuestion(currentQuestion){
+      //let nextQuestionButton = document.getElementById("nextQuestion");
+      //console.log("nextQuestionButton");
     }
-    previousQuestion(){
-      
+    previousQuestion(currentQuestion){
+      //let previousQuestionButton = document.getElementById("previousQuestion");
+      //console.log(previousQuestionButton);
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let divForQuestion = document.createElement("div");
         divForQuestion.id = "question" + eachDiv;
         quizFormElement.appendChild(divForQuestion);
-        this.onlyViewCurrentQuestion(divForQuestion);
+        //this.onlyViewCurrentQuestion(divForQuestion);
 
         let labelForCategory = document.createElement("label");
         labelForCategory.appendChild(document.createTextNode("Category: " + questionClass.questionCategory));
@@ -66,19 +68,23 @@ document.addEventListener("DOMContentLoaded", () => {
           labelForChoices.insertAdjacentHTML("afterend", "<br>");
           counterForInputValues++;
         }
-        if (divForQuestion.id <= "question" + selectedQuestions) {
-          let nextQuestion = document.createElement("button");
-          nextQuestion.id = "nextQuestion";
-          nextQuestion.className = "btn btn-success floatRight";
-          nextQuestion.innerHTML = "Next question";
-          divForQuestion.appendChild(nextQuestion);
+        let nextQuestion = document.createElement("button");
+        nextQuestion.id = "nextQuestion";
+        nextQuestion.className = "btn btn-success floatRight";
+        nextQuestion.innerHTML = "Next question";
+        divForQuestion.appendChild(nextQuestion);
+
+        let previousQuestion = document.createElement("button");
+        previousQuestion.id = "previousQuestion";
+        previousQuestion.className = "btn btn-success floatLeft";
+        previousQuestion.innerHTML = "Previous question";
+        divForQuestion.appendChild(previousQuestion);
+
+        if (divForQuestion.id == "question1") {
+          previousQuestion.style.display = "none";
         }
-        if (divForQuestion.id > "question" + 1) {
-          let previousQuestion = document.createElement("button");
-          previousQuestion.id = "previousQuestion";
-          previousQuestion.className = "btn btn-success floatLeft";
-          previousQuestion.innerHTML = "Prevous question";
-          divForQuestion.appendChild(previousQuestion);
+        if (divForQuestion.id == "question" + selectedQuestions) {
+          nextQuestion.style.display = "none";
         }
       }
     }
@@ -178,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
     //quiz.createCorrectQuizButton();
-
     //document.getElementById("correctQuiz").addEventListener("click", () => {
     //  quiz.iterateThroughQuestionDivs(selectValue);
     //  let quizFormElement = document.getElementById("quizForm");
