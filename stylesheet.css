@@ -14,9 +14,7 @@ body, html {
   -webkit-text-stroke-color: black;
 }
 
-.background-Image {
-
-}
+.background-Image {}
 
 .btn_go {
   margin: 10px 0px 10px 0px;
@@ -39,6 +37,11 @@ body, html {
 
 .floatRight {
   float: right;
+  justify-content: center;
+}
+
+.floatLeft {
+  float: left;
   justify-content: center;
 }
 
