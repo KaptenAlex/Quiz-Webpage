@@ -17,9 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     onlyViewCurrentQuestion(currentQuestion) {
       console.log(currentQuestion);
-      if (currentQuestion.id > "question" + 1) {
+      if (currentQuestion.id > currentQuestion.id || currentQuestion.id < currentQuestion.id) {
         currentQuestion.style.display = "none";
       }
+    }
+    nextQuestion(){
+
+    }
+    previousQuestion(){
+      
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -60,11 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
           labelForChoices.insertAdjacentHTML("afterend", "<br>");
           counterForInputValues++;
         }
-        /* add next button only if there is a next question
-           add before button only if there was a question before it.
-           if (currentQuestion.id > "question" + 1)
-        */
-        console.log(selectedQuestions);
         if (divForQuestion.id <= "question" + selectedQuestions) {
           let nextQuestion = document.createElement("button");
           nextQuestion.id = "nextQuestion";
