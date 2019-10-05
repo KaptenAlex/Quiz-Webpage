@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /*
     Link to current json object: http://demo3824117.mockable.io/
   */
+  /* TODO:
+    Show one question at a time, let user browse through them.
+    Responsive design.
+  */
   const json = getJSON("http://demo3824117.mockable.io/");
   class Quiz {
     constructor() {
@@ -77,7 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let noOfChoicesNotChecked = 0;
       let noOfWrongAnswers = 0;
       let noOfRightAnswers = 0;
+      //Map input values to array, compare array to what user have checked.
+      let inputValues = [];
       for (let checkbox of arrayOfCurrentQuestionDiv) {
+        inputValues.push(checkbox.value);
         if (checkbox.checked && checkbox.value == "true") {
           noOfRightAnswers++;
         } else if (checkbox.checked && checkbox.value == "false") {
@@ -89,9 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-      if (noOfRightAnswers > 0 && noOfWrongAnswers == 0) {
+      let rightInputValues = inputValues.filter(truths => truths == "true");
+      let rightAmountOfTrueValues = rightInputValues.length;
+      if (noOfRightAnswers == rightAmountOfTrueValues && noOfWrongAnswers == 0) {
         quiz.noOfRightAnswers++;
-      } else if (noOfRightAnswers > 0 && noOfWrongAnswers > 0) {
+      } else if (noOfRightAnswers > rightAmountOfTrueValues && noOfWrongAnswers > 0) {
         quiz.noOfWrongAnswers++;
       } else if (noOfWrongAnswers > 0) {
         quiz.noOfWrongAnswers++;
