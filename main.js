@@ -66,30 +66,35 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.innerHTML = "Correct quiz!";
       quizFormElement.appendChild(submitButton);
     }
-    correctQuizQuestions(selectedValue) {
+    iterateThroughQuestionDivs(selectedValue) {
       for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
-        let noOfChoicesNotChecked = 0;
-        let noOfWrongAnswers = 0;
-        let noOfRightAnswers = 0;
         let currentDivElement = document.getElementById("question" + currentDiv);
         let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
-        for (let checkbox of inputChildrenOfCurrentDivElement) {
-          if (checkbox.checked && checkbox.value == "true") {
-            noOfRightAnswers++;
-          } else if (checkbox.checked && checkbox.value == "false") {
+        this.correctQuizQuestions(inputChildrenOfCurrentDivElement);
+      }
+    }
+    correctQuizQuestions(arrayOfCurrentQuestionDiv) {
+      let noOfChoicesNotChecked = 0;
+      let noOfWrongAnswers = 0;
+      let noOfRightAnswers = 0;
+      for (let checkbox of arrayOfCurrentQuestionDiv) {
+        if (checkbox.checked && checkbox.value == "true") {
+          noOfRightAnswers++;
+        } else if (checkbox.checked && checkbox.value == "false") {
+          noOfWrongAnswers++;
+        } else {
+          noOfChoicesNotChecked++;
+          if (noOfChoicesNotChecked >= 3) {
             noOfWrongAnswers++;
-          } else {
-            noOfChoicesNotChecked++;
-            if (noOfChoicesNotChecked >= 3) {
-              noOfWrongAnswers++;
-            }
           }
         }
-        if (noOfRightAnswers > 0 && noOfWrongAnswers == 0) {
-          quiz.noOfRightAnswers++;
-        } else if (noOfWrongAnswers > 0) {
-          quiz.noOfWrongAnswers++;
-        }
+      }
+      if (noOfRightAnswers > 0 && noOfWrongAnswers == 0) {
+        quiz.noOfRightAnswers++;
+      } else if (noOfRightAnswers > 0 && noOfWrongAnswers > 0) {
+        quiz.noOfWrongAnswers++;
+      } else if (noOfWrongAnswers > 0) {
+        quiz.noOfWrongAnswers++;
       }
     }
     printOutResults() {
@@ -124,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.isQuestionRightOrWrong = currentObject.answers;
     }
   }
+
   let quiz = new Quiz();
   select_question = document.getElementById("select_question");
   for (var questionValue = 1; questionValue < Object.keys(json).length + 1; questionValue++) {
@@ -138,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.createCorrectQuizButton();
 
     document.getElementById("correctQuiz").addEventListener("click", () => {
-      quiz.correctQuizQuestions(selectValue);
+      quiz.iterateThroughQuestionDivs(selectValue);
       let quizFormElement = document.getElementById("quizForm");
       quizFormElement.remove();
       quiz.printOutResults();
