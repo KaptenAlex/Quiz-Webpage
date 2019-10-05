@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
       this.noOfRightAnswers = 0;
       this.noOfWrongAnswers = 0;
     }
+    onlyViewCurrentQuestion(currentQuestion) {
+      console.log(currentQuestion);
+      if (currentQuestion.id > "question" + 1) {
+        currentQuestion.style.display = "none";
+      }
+    }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
       let quizFormElement = document.getElementById("quizForm");
@@ -27,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let divForQuestion = document.createElement("div");
         divForQuestion.id = "question" + eachDiv;
         quizFormElement.appendChild(divForQuestion);
+        this.onlyViewCurrentQuestion(divForQuestion);
 
         let labelForCategory = document.createElement("label");
         labelForCategory.appendChild(document.createTextNode("Category: " + questionClass.questionCategory));
@@ -52,6 +59,25 @@ document.addEventListener("DOMContentLoaded", () => {
           divForQuestion.appendChild(labelForChoices);
           labelForChoices.insertAdjacentHTML("afterend", "<br>");
           counterForInputValues++;
+        }
+        /* add next button only if there is a next question
+           add before button only if there was a question before it.
+           if (currentQuestion.id > "question" + 1)
+        */
+        console.log(selectedQuestions);
+        if (divForQuestion.id <= "question" + selectedQuestions) {
+          let nextQuestion = document.createElement("button");
+          nextQuestion.id = "nextQuestion";
+          nextQuestion.className = "btn btn-success floatRight";
+          nextQuestion.innerHTML = "Next question";
+          divForQuestion.appendChild(nextQuestion);
+        }
+        if (divForQuestion.id > "question" + 1) {
+          let previousQuestion = document.createElement("button");
+          previousQuestion.id = "previousQuestion";
+          previousQuestion.className = "btn btn-success floatLeft";
+          previousQuestion.innerHTML = "Prevous question";
+          divForQuestion.appendChild(previousQuestion);
         }
       }
     }
