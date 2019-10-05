@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Link to current json object: http://demo3824117.mockable.io/
   */
   /* TODO:
+    VG assigments
     Show one question at a time, let user browse through them.
     Responsive design.
   */
@@ -81,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let noOfChoicesNotChecked = 0;
       let noOfWrongAnswers = 0;
       let noOfRightAnswers = 0;
-      //Map input values to array, compare array to what user have checked.
       let inputValues = [];
       for (let checkbox of arrayOfCurrentQuestionDiv) {
         inputValues.push(checkbox.value);
