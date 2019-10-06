@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   */
   /* TODO:
     VG assigments
-    Show one question at a time, let user browse through them.
+    Add margins to next + previous button.
+    add correct button.
     Responsive design.
   */
   const json = getJSON("http://demo3824117.mockable.io/");
@@ -15,19 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
       this.noOfRightAnswers = 0;
       this.noOfWrongAnswers = 0;
     }
-    onlyViewCurrentQuestion(currentQuestion) {
-      console.log(currentQuestion);
-      if (currentQuestion.id != "currentQuestion.id") {
+    onlyViewFirstQuestion(currentQuestion) {
+      if (currentQuestion.id != "question1") {
         currentQuestion.style.display = "none";
       }
     }
-    nextQuestion(currentQuestionDivId) {
-      let nextQuestionButton = document.getElementById(currentQuestionDivId);
-      console.log(nextQuestionButton);
+    nextQuestion(currentQuestionDiv) {
+      let currentDiv = document.getElementById(currentQuestionDiv);
+      let nextDiv = currentDiv.nextElementSibling;
+      currentDiv.style.display = "none";
+      nextDiv.style.display = "block";
     }
-    previousQuestion(currentQuestionDivId) {
-      let nextQuestionButton = document.getElementById(currentQuestionDivId);
-      console.log(nextQuestionButton);
+    previousQuestion(currentQuestionDiv) {
+      let currentDiv = document.getElementById(currentQuestionDiv);
+      let previousDiv = currentDiv.previousElementSibling;
+      currentDiv.style.display ="none";
+      previousDiv.style.display ="block";
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -41,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let divForQuestion = document.createElement("div");
         divForQuestion.id = "question" + eachDiv;
         quizFormElement.appendChild(divForQuestion);
-        //this.onlyViewCurrentQuestion(divForQuestion);
+        this.onlyViewFirstQuestion(divForQuestion);
 
         let labelForCategory = document.createElement("label");
         labelForCategory.appendChild(document.createTextNode("Category: " + questionClass.questionCategory));
@@ -187,24 +191,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('#nextQuestion').forEach(nextButton => {
       nextButton.addEventListener('click', event => {
         let divId = event.target.parentElement.id;
-        console.log(divId);
         quiz.nextQuestion(divId);
       });
     });
     document.querySelectorAll('#previousQuestion').forEach(previousButton => {
       previousButton.addEventListener('click', e => {
         let divId = e.target.parentElement.id;
-        console.log(divId);
         quiz.previousQuestion(divId);
       });
     });
-
-    //document.querySelectorAll('rightFloat').forEach(item => {
-    //  item.addEventListener("click", () => {
-    //    console.log("hej");
-    //  });
-    //});
-
     //quiz.createCorrectQuizButton();
     //document.getElementById("correctQuiz").addEventListener("click", () => {
     //  quiz.iterateThroughQuestionDivs(selectValue);
