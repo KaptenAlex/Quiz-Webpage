@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     previousQuestion(currentQuestionDiv) {
       let currentDiv = document.getElementById(currentQuestionDiv);
       let previousDiv = currentDiv.previousElementSibling;
-      currentDiv.style.display ="none";
-      previousDiv.style.display ="block";
+      currentDiv.style.display = "none";
+      previousDiv.style.display = "block";
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         labelForCategory.insertAdjacentHTML("afterend", "<br>");
 
         let labelForQuestion = document.createElement("label");
-        labelForQuestion.appendChild(document.createTextNode("Question: " + questionClass.question));
+        labelForQuestion.appendChild(document.createTextNode("Question: " + eachDiv + " " + questionClass.question));
         divForQuestion.appendChild(labelForQuestion);
         labelForQuestion.insertAdjacentHTML("afterend", "<br>");
 
