@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
         currentQuestion.style.display = "none";
       }
     }
-    nextQuestion(currentQuestion){
+    nextQuestion(currentQuestionDivId) {
       //let nextQuestionButton = document.getElementById("nextQuestion");
       //console.log("nextQuestionButton");
     }
-    previousQuestion(currentQuestion){
+    previousQuestion(currentQuestionDivId) {
       //let previousQuestionButton = document.getElementById("previousQuestion");
       //console.log(previousQuestionButton);
     }
@@ -183,6 +183,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectValue = Number(document.getElementById("select_question").value);
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
+
+    document.querySelectorAll('#nextQuestion').forEach(nextButton => {
+      nextButton.addEventListener('click', event => {
+        let divId = event.target.parentElement.id;
+        quiz.nextQuestion(divId);
+      });
+    });
+    document.querySelectorAll('#previousQuestion').forEach(previousButton => {
+      previousButton.addEventListener('click', e => {
+        let divId = e.target.parentElement.id;
+        quiz.nextQuestion(divId);
+      });
+    });
+
+    //document.querySelectorAll('rightFloat').forEach(item => {
+    //  item.addEventListener("click", () => {
+    //    console.log("hej");
+    //  });
+    //});
+
     //quiz.createCorrectQuizButton();
     //document.getElementById("correctQuiz").addEventListener("click", () => {
     //  quiz.iterateThroughQuestionDivs(selectValue);
