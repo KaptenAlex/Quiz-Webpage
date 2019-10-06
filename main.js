@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   /*
-    Link to current json object: http://demo3824117.mockable.io/
+    Link to current json file: http://demo3824117.mockable.io/
   */
   const json = getJSON("http://demo3824117.mockable.io/");
   class Quiz {
@@ -140,14 +140,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     printOutResults() {
       let createNoOfQuestions = document.createElement("h1");
-      createNoOfQuestions.innerHTML = "Number of questions: " + quiz.noOfQuestions;
-      createNoOfQuestions.className = "total-questions";
+      createNoOfQuestions.innerHTML = "Number of selected questions: " + quiz.noOfQuestions;
+      createNoOfQuestions.className = "total-questions display-5";
       let createNoOfRightAnswers = document.createElement("h1");
       createNoOfRightAnswers.innerHTML = "Number of right questions: " + quiz.noOfRightAnswers;
-      createNoOfRightAnswers.className = "right-answers";
+      createNoOfRightAnswers.className = "right-answers display-5";
       let createNoOfWrongAnswers = document.createElement("h1");
       createNoOfWrongAnswers.innerHTML = "Number of wrong questions: " + quiz.noOfWrongAnswers;
-      createNoOfWrongAnswers.className = "wrong-answers";
+      createNoOfWrongAnswers.className = "wrong-answers display-5";
       let container = document.getElementById("headers");
       document.getElementById("headTitle").innerHTML = "The results are in " + quiz.userName + "!";
       container.appendChild(createNoOfQuestions);
