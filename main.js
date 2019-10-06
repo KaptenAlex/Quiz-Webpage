@@ -3,29 +3,98 @@ document.addEventListener("DOMContentLoaded", () => {
     Link to current json file: http://demo3824117.mockable.io/
   */
   const json = getJSON("http://demo3824117.mockable.io/");
+
+  function onlyViewFirstQuestion(currentQuestion) {
+    if (currentQuestion.id != "question1") {
+      currentQuestion.style.display = "none";
+    }
+  }
+
+  function showNextQuestion(currentQuestionDiv) {
+    let currentDiv = document.getElementById(currentQuestionDiv);
+    let nextDiv = currentDiv.nextElementSibling;
+    currentDiv.style.display = "none";
+    nextDiv.style.display = "block";
+  }
+
+  function showPreviousQuestion(currentQuestionDiv) {
+    let currentDiv = document.getElementById(currentQuestionDiv);
+    let previousDiv = currentDiv.previousElementSibling;
+    currentDiv.style.display = "none";
+    previousDiv.style.display = "block";
+  }
+
+  function createCorrectQuizButton(lastQuestionNumber) {
+    let lastQuestionDiv = document.getElementById("question" + lastQuestionNumber);
+    let submitButton = document.createElement("button");
+    submitButton.id = "correctQuiz";
+    submitButton.type = "button";
+    submitButton.className = "btn btn-success floatRight";
+    submitButton.innerHTML = "Correct quiz!";
+    lastQuestionDiv.appendChild(submitButton);
+  }
+
+  function iterateThroughQuestionDivs(selectedValue) {
+    for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
+      let currentDivElement = document.getElementById("question" + currentDiv);
+      let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
+      correctQuizQuestions(inputChildrenOfCurrentDivElement);
+    }
+  }
+
+  function correctQuizQuestions(arrayOfCurrentQuestionDiv) {
+    let noOfChoicesNotChecked = 0;
+    let noOfWrongAnswers = 0;
+    let noOfRightAnswers = 0;
+    let inputValues = [];
+    for (let checkbox of arrayOfCurrentQuestionDiv) {
+      inputValues.push(checkbox.value);
+      if (checkbox.checked && checkbox.value == "true") {
+        noOfRightAnswers++;
+      } else if (checkbox.checked && checkbox.value == "false") {
+        noOfWrongAnswers++;
+      } else {
+        noOfChoicesNotChecked++;
+        if (noOfChoicesNotChecked >= 3) {
+          noOfWrongAnswers++;
+        }
+      }
+    }
+    let rightInputValues = inputValues.filter(truths => truths == "true");
+    let rightAmountOfTrueValues = rightInputValues.length;
+    if (noOfRightAnswers == rightAmountOfTrueValues && noOfWrongAnswers == 0) {
+      quiz.noOfRightAnswers++;
+    } else if (noOfRightAnswers > rightAmountOfTrueValues && noOfWrongAnswers > 0) {
+      quiz.noOfWrongAnswers++;
+    } else if (noOfWrongAnswers > 0) {
+      quiz.noOfWrongAnswers++;
+    }
+  }
+
+  function printOutResults() {
+    let createNoOfQuestions = document.createElement("h1");
+    createNoOfQuestions.innerHTML = "Number of selected questions: " + quiz.noOfQuestions;
+    createNoOfQuestions.className = "total-questions display-5";
+    let createNoOfRightAnswers = document.createElement("h1");
+    createNoOfRightAnswers.innerHTML = "Number of right questions: " + quiz.noOfRightAnswers;
+    createNoOfRightAnswers.className = "right-answers display-5";
+    let createNoOfWrongAnswers = document.createElement("h1");
+    createNoOfWrongAnswers.innerHTML = "Number of wrong questions: " + quiz.noOfWrongAnswers;
+    createNoOfWrongAnswers.className = "wrong-answers display-5";
+    let container = document.getElementById("headers");
+    document.getElementById("headTitle").innerHTML = "The results are in " + quiz.userName + "!";
+    container.appendChild(createNoOfQuestions);
+    container.appendChild(createNoOfRightAnswers);
+    container.appendChild(createNoOfWrongAnswers);
+  }
+
+
   class Quiz {
     constructor() {
       this.userName = "";
       this.noOfQuestions = 0;
       this.noOfRightAnswers = 0;
       this.noOfWrongAnswers = 0;
-    }
-    onlyViewFirstQuestion(currentQuestion) {
-      if (currentQuestion.id != "question1") {
-        currentQuestion.style.display = "none";
-      }
-    }
-    nextQuestion(currentQuestionDiv) {
-      let currentDiv = document.getElementById(currentQuestionDiv);
-      let nextDiv = currentDiv.nextElementSibling;
-      currentDiv.style.display = "none";
-      nextDiv.style.display = "block";
-    }
-    previousQuestion(currentQuestionDiv) {
-      let currentDiv = document.getElementById(currentQuestionDiv);
-      let previousDiv = currentDiv.previousElementSibling;
-      currentDiv.style.display = "none";
-      previousDiv.style.display = "block";
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -39,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let divForQuestion = document.createElement("div");
         divForQuestion.id = "question" + eachDiv;
         quizFormElement.appendChild(divForQuestion);
-        this.onlyViewFirstQuestion(divForQuestion);
+        onlyViewFirstQuestion(divForQuestion);
 
         let labelForCategory = document.createElement("label");
         labelForCategory.appendChild(document.createTextNode("Category: " + questionClass.questionCategory));
@@ -83,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (divForQuestion.id == "question" + selectedQuestions) {
           nextQuestion.style.display = "none";
-          this.createCorrectQuizButton(selectedQuestions);
+          createCorrectQuizButton(selectedQuestions);
         }
       }
     }
@@ -93,66 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let questionDiv = document.getElementById("questionsDiv");
       questionDiv.parentNode.removeChild(questionDiv);
       this.createElementsForQuiz();
-    }
-    createCorrectQuizButton(lastQuestionNumber) {
-      let lastQuestionDiv = document.getElementById("question" + lastQuestionNumber);
-      let submitButton = document.createElement("button");
-      submitButton.id = "correctQuiz";
-      submitButton.type = "button";
-      submitButton.className = "btn btn-success floatRight";
-      submitButton.innerHTML = "Correct quiz!";
-      lastQuestionDiv.appendChild(submitButton);
-    }
-    iterateThroughQuestionDivs(selectedValue) {
-      for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
-        let currentDivElement = document.getElementById("question" + currentDiv);
-        let inputChildrenOfCurrentDivElement = currentDivElement.getElementsByTagName('input');
-        this.correctQuizQuestions(inputChildrenOfCurrentDivElement);
-      }
-    }
-    correctQuizQuestions(arrayOfCurrentQuestionDiv) {
-      let noOfChoicesNotChecked = 0;
-      let noOfWrongAnswers = 0;
-      let noOfRightAnswers = 0;
-      let inputValues = [];
-      for (let checkbox of arrayOfCurrentQuestionDiv) {
-        inputValues.push(checkbox.value);
-        if (checkbox.checked && checkbox.value == "true") {
-          noOfRightAnswers++;
-        } else if (checkbox.checked && checkbox.value == "false") {
-          noOfWrongAnswers++;
-        } else {
-          noOfChoicesNotChecked++;
-          if (noOfChoicesNotChecked >= 3) {
-            noOfWrongAnswers++;
-          }
-        }
-      }
-      let rightInputValues = inputValues.filter(truths => truths == "true");
-      let rightAmountOfTrueValues = rightInputValues.length;
-      if (noOfRightAnswers == rightAmountOfTrueValues && noOfWrongAnswers == 0) {
-        quiz.noOfRightAnswers++;
-      } else if (noOfRightAnswers > rightAmountOfTrueValues && noOfWrongAnswers > 0) {
-        quiz.noOfWrongAnswers++;
-      } else if (noOfWrongAnswers > 0) {
-        quiz.noOfWrongAnswers++;
-      }
-    }
-    printOutResults() {
-      let createNoOfQuestions = document.createElement("h1");
-      createNoOfQuestions.innerHTML = "Number of selected questions: " + quiz.noOfQuestions;
-      createNoOfQuestions.className = "total-questions display-5";
-      let createNoOfRightAnswers = document.createElement("h1");
-      createNoOfRightAnswers.innerHTML = "Number of right questions: " + quiz.noOfRightAnswers;
-      createNoOfRightAnswers.className = "right-answers display-5";
-      let createNoOfWrongAnswers = document.createElement("h1");
-      createNoOfWrongAnswers.innerHTML = "Number of wrong questions: " + quiz.noOfWrongAnswers;
-      createNoOfWrongAnswers.className = "wrong-answers display-5";
-      let container = document.getElementById("headers");
-      document.getElementById("headTitle").innerHTML = "The results are in " + quiz.userName + "!";
-      container.appendChild(createNoOfQuestions);
-      container.appendChild(createNoOfRightAnswers);
-      container.appendChild(createNoOfWrongAnswers);
     }
   }
   class Question {
@@ -180,23 +189,24 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectValue = Number(document.getElementById("select_question").value);
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
+    
     document.querySelectorAll('#nextQuestion').forEach(nextButton => {
       nextButton.addEventListener('click', event => {
         let divId = event.target.parentElement.id;
-        quiz.nextQuestion(divId);
+        showNextQuestion(divId);
       });
     });
     document.querySelectorAll('#previousQuestion').forEach(previousButton => {
       previousButton.addEventListener('click', e => {
         let divId = e.target.parentElement.id;
-        quiz.previousQuestion(divId);
+        showPreviousQuestion(divId);
       });
     });
     document.getElementById("correctQuiz").addEventListener("click", () => {
-      quiz.iterateThroughQuestionDivs(selectValue);
+      iterateThroughQuestionDivs(selectValue);
       let quizFormElement = document.getElementById("quizForm");
       quizFormElement.remove();
-      quiz.printOutResults();
+      printOutResults();
     });
   });
 });
