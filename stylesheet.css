@@ -14,8 +14,6 @@ body, html {
   -webkit-text-stroke-color: black;
 }
 
-.background-Image {}
-
 .btn_go {
   margin: 10px 0px 10px 0px;
 }
@@ -25,12 +23,13 @@ body, html {
   justify-content: center;
 }
 
-.selection {
+.margins {
   margin: 10px 20px 10px 20px;
 }
 
 .shapeForm {
-  margin-top: 10px;
+  margin-top: 10%;
+  width: 100%;
   background-color: green;
   border-radius: 10px;
 }
@@ -52,6 +51,12 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }
 
 .total-questions {
@@ -61,6 +66,12 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }
 
 .wrong-answers {
@@ -70,4 +81,10 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }

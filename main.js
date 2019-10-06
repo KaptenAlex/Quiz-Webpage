@@ -2,11 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /*
     Link to current json object: http://demo3824117.mockable.io/
   */
-  /* TODO:
-    VG assigments
-    Add margins to next + previous button.
-    Responsive design.
-  */
   const json = getJSON("http://demo3824117.mockable.io/");
   class Quiz {
     constructor() {
@@ -175,19 +170,16 @@ document.addEventListener("DOMContentLoaded", () => {
       this.isQuestionRightOrWrong = currentObject.answers;
     }
   }
-
   let quiz = new Quiz();
   select_question = document.getElementById("select_question");
   for (var questionValue = 1; questionValue < Object.keys(json).length + 1; questionValue++) {
     select_question.insertAdjacentHTML("beforeend", "<option>" + questionValue + "</option>");
   }
-
   document.getElementById('btn_CreateQuiz').addEventListener("click", () => {
     quiz.userName = document.getElementById("userNameInput").value;
     let selectValue = Number(document.getElementById("select_question").value);
     quiz.createQuizForm();
     quiz.createElementsForQuiz(selectValue);
-
     document.querySelectorAll('#nextQuestion').forEach(nextButton => {
       nextButton.addEventListener('click', event => {
         let divId = event.target.parentElement.id;
