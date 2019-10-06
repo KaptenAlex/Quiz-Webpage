@@ -46,12 +46,6 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -o-hyphens: auto;
-  hyphens: auto;
 }
 
 .total-questions {
@@ -61,12 +55,6 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -o-hyphens: auto;
-  hyphens: auto;
 }
 
 .wrong-answers {
@@ -76,10 +64,4 @@ body, html {
   -webkit-text-stroke-color: black;
   display: flex;
   justify-content: center;
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -o-hyphens: auto;
-  hyphens: auto;
 }
