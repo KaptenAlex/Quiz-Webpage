@@ -14,10 +14,6 @@ body, html {
   -webkit-text-stroke-color: black;
 }
 
-.btn_go {
-  margin: 10px 0px 10px 0px;
-}
-
 .centerDiv {
   display: flex;
   justify-content: center;
