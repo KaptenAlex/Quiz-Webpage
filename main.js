@@ -17,17 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     onlyViewCurrentQuestion(currentQuestion) {
       console.log(currentQuestion);
-      if (currentQuestion.id != currentQuestion.id) {
+      if (currentQuestion.id != "currentQuestion.id") {
         currentQuestion.style.display = "none";
       }
     }
     nextQuestion(currentQuestionDivId) {
-      //let nextQuestionButton = document.getElementById("nextQuestion");
-      //console.log("nextQuestionButton");
+      let nextQuestionButton = document.getElementById(currentQuestionDivId);
+      console.log(nextQuestionButton);
     }
     previousQuestion(currentQuestionDivId) {
-      //let previousQuestionButton = document.getElementById("previousQuestion");
-      //console.log(previousQuestionButton);
+      let nextQuestionButton = document.getElementById(currentQuestionDivId);
+      console.log(nextQuestionButton);
     }
     createElementsForQuiz(selectedQuestions) {
       this.noOfQuestions = selectedQuestions;
@@ -187,13 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('#nextQuestion').forEach(nextButton => {
       nextButton.addEventListener('click', event => {
         let divId = event.target.parentElement.id;
+        console.log(divId);
         quiz.nextQuestion(divId);
       });
     });
     document.querySelectorAll('#previousQuestion').forEach(previousButton => {
       previousButton.addEventListener('click', e => {
         let divId = e.target.parentElement.id;
-        quiz.nextQuestion(divId);
+        console.log(divId);
+        quiz.previousQuestion(divId);
       });
     });
 
