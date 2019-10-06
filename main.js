@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* TODO:
     VG assigments
     Add margins to next + previous button.
-    add correct button.
     Responsive design.
   */
   const json = getJSON("http://demo3824117.mockable.io/");
@@ -89,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (divForQuestion.id == "question" + selectedQuestions) {
           nextQuestion.style.display = "none";
+          this.createCorrectQuizButton(selectedQuestions);
         }
       }
     }
@@ -99,15 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
       questionDiv.parentNode.removeChild(questionDiv);
       this.createElementsForQuiz();
     }
-    //createCorrectQuizButton() {
-    //  let quizFormElement = document.getElementById("quizForm");
-    //  let submitButton = document.createElement("button");
-    //  submitButton.id = "correctQuiz";
-    //  submitButton.type = "button";
-    //  submitButton.className = "btn btn-success floatRight";
-    //  submitButton.innerHTML = "Correct quiz!";
-    //  quizFormElement.appendChild(submitButton);
-    //}
+    createCorrectQuizButton(lastQuestionNumber) {
+      let lastQuestionDiv = document.getElementById("question" + lastQuestionNumber);
+      let submitButton = document.createElement("button");
+      submitButton.id = "correctQuiz";
+      submitButton.type = "button";
+      submitButton.className = "btn btn-success floatRight";
+      submitButton.innerHTML = "Correct quiz!";
+      lastQuestionDiv.appendChild(submitButton);
+    }
     iterateThroughQuestionDivs(selectedValue) {
       for (var currentDiv = 1; currentDiv < selectedValue + 1; currentDiv++) {
         let currentDivElement = document.getElementById("question" + currentDiv);
@@ -200,12 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
         quiz.previousQuestion(divId);
       });
     });
-    //quiz.createCorrectQuizButton();
-    //document.getElementById("correctQuiz").addEventListener("click", () => {
-    //  quiz.iterateThroughQuestionDivs(selectValue);
-    //  let quizFormElement = document.getElementById("quizForm");
-    //  quizFormElement.remove();
-    //  quiz.printOutResults();
-    //});
+    document.getElementById("correctQuiz").addEventListener("click", () => {
+      quiz.iterateThroughQuestionDivs(selectValue);
+      let quizFormElement = document.getElementById("quizForm");
+      quizFormElement.remove();
+      quiz.printOutResults();
+    });
   });
 });
